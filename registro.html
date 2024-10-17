@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Jacques Francois;
+        text-align: center;
+        align-items: center;
+    }
+    .container {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        max-width: 300px;
+        padding-right: 40px;
+        margin-left: 36%;
+    }
+    input {
+        display: block;
+        
+        margin-bottom: 10px;
+        width: 100%;
+        padding: 8px;
+    }
+    button {
+        padding: 8px 16px;
+        background-color: #6B5BCA;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #4ee0cd;
+    }
+    .message {
+        margin-top: 10px;
+        font-size: 14px;
+        color: rgb(30, 255, 0);
+    }
+    .Registro{
+        font-family: Jacques Francois;
+        text-align: center;
+
+    }
+    h1 {
+        color: #4CD4D4;
+    }
+    h3 {
+        color: #6B5BCA;
+    }
+</style>
+<body>
+    <!-- Formulario de Registro -->
+    <div class="container">
+        <h1>Registro</h1>
+        <input type="text" id="registroUsuario" placeholder="Nombre de usuario" required>
+        <input type="password" id="registroContrasena" placeholder="Contraseña" required>
+        <button onclick="registrar()">Registrar</button>
+        <p class="message" id="registroMensaje"></p>
+    </div>
+    
+    <script>
+        // Función para registrar un nuevo usuario
+        function registrar() {
+            const usuario = document.getElementById("registroUsuario").value;
+            const contrasena = document.getElementById("registroContrasena").value;
+            const registroMensaje = document.getElementById("registroMensaje");
+
+            if (usuario === "" || contrasena === "") {
+                registroMensaje.textContent = "Por favor, rellena todos los campos.";
+                return;
+            }
+
+            // Comprobar si el usuario ya está registrado
+            if (localStorage.getItem(usuario)) {
+                registroMensaje.textContent = "El usuario ya está registrado.";
+            } else {
+                // Guardar la información en LocalStorage
+                localStorage.setItem(usuario, contrasena);
+                registroMensaje.textContent = "Usuario registrado con éxito.";
+            }
+
+            // Limpiar los campos
+            document.getElementById("registroUsuario").value = "";
+            document.getElementById("registroContrasena").value = "";
+        }
+    </script>
+</body>
+</html>

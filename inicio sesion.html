@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro e Inicio de Sesión</title>
+    <style>
+        body {
+            font-family: Jacques Francois;
+            text-align: center;
+            align-items: center;
+        }
+        .container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            max-width: 300px;
+            padding-right: 40px;
+            margin-left: 36%;
+        }
+        input {
+            display: block;
+            
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #6B5BCA;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4ee0cd;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: rgb(21, 255, 0);
+        }
+        .Registro{
+            font-family: Jacques Francois;
+            text-align: center;
+
+        }
+        h1 {
+            color: #4CD4D4;
+        }
+        h3 {
+            color: #6B5BCA;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Demo Hostorial Medico</h1>
+
+    <!-- Formulario de Inicio de Sesión -->
+    <div class="container">
+        <h3>Iniciar Sesión</h3>
+        <input type="text" id="loginUsuario" placeholder="Nombre de usuario" required>
+        <input type="password" id="loginContrasena" placeholder="Contraseña" required>
+        <button onclick="iniciarSesion()">Iniciar Sesión</button>
+        <p class="message" id="loginMensaje"></p>
+        
+        <!-- Botón que al hacer clic redirige al registro -->
+        <button onclick="redirigir()">Registrate</button>
+    </div>
+
+
+    
+    <div>
+       <script>
+        function redirigir() {
+            // Redirigir a una nueva URL
+            window.location.href = "registro.html";
+        }
+    </script> 
+    </div>
+    
+
+    <script>// Función para iniciar sesión
+        function iniciarSesion() {
+            const usuario = document.getElementById("loginUsuario").value;
+            const contrasena = document.getElementById("loginContrasena").value;
+            const loginMensaje = document.getElementById("loginMensaje");
+
+            if (usuario === "" || contrasena === "") {
+                loginMensaje.textContent = "Por favor, rellena todos los campos.";
+                return;
+            }
+
+            // Comprobar si el usuario está registrado
+            const contrasenaGuardada = localStorage.getItem(usuario);
+            if (contrasenaGuardada === null) {
+                loginMensaje.textContent = "El usuario no existe.";
+            } else if (contrasenaGuardada === contrasena) {
+                loginMensaje.textContent = "Inicio de sesión exitoso.";
+            } else {
+                loginMensaje.textContent = "Contraseña incorrecta.";
+            }
+
+            // Limpiar los campos
+            document.getElementById("loginUsuario").value = "";
+            document.getElementById("loginContrasena").value = "";
+        }</script>
+
+
+        
+    </script>
+
+</body>
+</html>
